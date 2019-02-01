@@ -3,7 +3,7 @@
 require 'rack-proxy'
 require 'sinatra'
 require './app'
-
+require './models/model'
 ## Function to load all instances of model_class from the json file.
 def load_model(model_class)
   begin
@@ -20,7 +20,12 @@ def load_model(model_class)
 end
 
 warmup do
-  # puts 'Loading objects from json files'
+  load_model(Provider)
+  load_model(Consumer)
+  load_model(Location)
+  load_model(User)
+  load_model(Item)
+  load_model(Order)
 end
 
 # Setting up routes
